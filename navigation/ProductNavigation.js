@@ -8,6 +8,8 @@ import DepartmentProductScreen from "../screens/DepartmentProductScreen";
 import ProductDetailScreen from "../screens/ProductDetailScreen";
 import FavoriteProductScreen from "../screens/FavoriteProductScreen";
 import PaymentScreen from "../screens/PaymentScreen";
+import Final from "../components/Final";
+
 
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
@@ -33,7 +35,8 @@ const ProductNavigator = createStackNavigator(
 
     },
     ProductDetail: ProductDetailScreen,
-    //Payment: PaymentScreen,
+    Payment: PaymentScreen,
+    Final,
   },
   {
     defaultNavigationOptions: defaultStackNavOptions,

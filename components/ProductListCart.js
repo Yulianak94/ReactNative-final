@@ -7,6 +7,7 @@ const ProductListCart = props => {
   const renderProductItemCart = (itemData) => {
     console.log(itemData)
       return <ProductItemCart
+      id={itemData.item.id}
       title={itemData.item.title}
       //shipping={itemData.item.shipping}
       price={itemData.item.price}

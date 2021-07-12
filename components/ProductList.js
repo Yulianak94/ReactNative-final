@@ -6,6 +6,7 @@ import ProductItem from "./ProductItem";
 const ProductList = props => {
   const renderProductItem = (itemData) => {
       return <ProductItem
+      id={itemData.item.title}
       title={itemData.item.title}
       //shipping={itemData.item.shipping}
       price={itemData.item.price}

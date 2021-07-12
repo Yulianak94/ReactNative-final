@@ -1,43 +1,30 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { StyleSheet, FlatList, ScrollView, TextInput, Button  } from "react-native";
+import { StyleSheet, FlatList, ScrollView, TextInput  } from "react-native";
 
 import { DEPARTMENT } from "../data/dummy-data";
 import Payment from "../components/Payment";
-import FinalScreen from "./FinalScreen";
-
 // 2. Import:
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../components/CustomHeaderButton";
 import ProductListCart from "../components/ProductListCart";
-import ProductItemCart from "../components/ProductItemCart";
+import Final from "../components/ProductItemCart";
+import { findNodeHandle } from "react-native";
+import { View } from "react-native";
 
-const PaymentScreen = (props) => {
-  const totalPrice = props.navigation.getParam("totalPrice");
-  
-  // const renderFinalItem = (itemData) => {
-  //   return (
-  //     <FinalScreen
-  //       // 2. Add color ref:
-  //       onSelect={() => {
-          
-  //       }}
-  //     />
-  //   );
-  // };
-  
-
+const FinalScreen = () => {
   return (
-    <>
-      <Payment {...props} totalPrice={totalPrice}/>
-    </>
+    <View>
+      <Final />
+    
+    </View>
   );
 };
 
 // 1. Change the navigationOptions to function, so we can return values:
-PaymentScreen.navigationOptions = (navData) => {
+FinalScreen.navigationOptions = (navData) => {
   return {
-    headerTitle: "Payment",
+    headerTitle: "Thank You",
     headerLeft: (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
@@ -68,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PaymentScreen;
+export default FinalScreen;

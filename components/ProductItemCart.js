@@ -1,7 +1,8 @@
-import React from "react";
+import React,{useCallback} from "react";
 import {View,Text,StyleSheet,TouchableOpacity,ImageBackground,Image, SafeAreaView, TextInput,Button} from "react-native";
 import CustomCartButton from "../components/CustomCartButton";
-import { HeaderButtons, Item } from "react-navigation-header-buttons";
+
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 // import:
 import { toggleAdd, toggleDelete } from "../store/actions/product";
@@ -14,12 +15,10 @@ import { useSelector, useDispatch } from "react-redux";
 // 2. add style. -> numberOfLines={1} if text is large - make is shorter. (only 1 row)
 
 const ProductItemCart = (props) => {
-  const [number, onChangeNumber] = React.useState(1);
- console.log(props);
-  const onPress = () => {
-    alert('clicked')
-  }
-
+  const dispatch = useDispatch();
+  const deleteFromCart = useCallback(() => {
+    dispatch(toggleDelete(props.id));
+  }, [dispatch, props.id]);
 
   
   return (
@@ -47,28 +46,11 @@ const ProductItemCart = (props) => {
       <View>
 
       <CustomCartButton
-        text='+'
-        type='outlined'
-        bordered
-        size='small'
-        onPress={toggleAdd}
-      />
-
-      <CustomCartButton
-        text='-'
-        type='outlined'
-        bordered
-        size='small'
-        onPress={toggleDelete}
-      />
-
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeNumber}
-        value={props.quantity}
-        placeholder="quantity"
-        keyboardType="numeric"
-      />
+        // instead of always rendering ios-star:
+        // render full / empty:
+        
+        onPress={deleteFromCart}
+        />
 
 
 

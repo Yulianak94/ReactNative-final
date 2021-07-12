@@ -1,34 +1,31 @@
-import React from 'react'
-import { Text, View, TouchableOpacity, Dimensions, StyleSheet } from 'react-native'
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import { Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-
-const width = Dimensions.get('window').width
-
-
-const CustomCartButton = ( props) => {
+const CustomCartButton = (props) => {
   return (
-    <TouchableOpacity onPress={props.onPress}>
-      <View style={styles.btnContainerStyle}>
-        <Text style={styles.btnTextStyle}> {props.text} </Text>
+    <View style={styles.button}>
+        <Button 
+          {...props}
+          icon={
+            <Icon
+              name="trash"
+              size={20}
+              color="black" 
+            />}/>
       </View>
-    </TouchableOpacity>
-  )
-}
+);};
 
-const styles = StyleSheet.create({
-  btnContainerStyle: {
-    backgroundColor: '#3F51B5',
-    paddingVertical: 8,
-    width: width / 1.3,
-    borderRadius: 5
-  },
-  btnTextStyle: {
-    color: '#ffffff',
-    fontSize: 16,
-    textTransform: 'uppercase',
-    textAlign: 'center',
-    fontFamily: 'Quicksand-Medium'
-  }
-})
+var styles = StyleSheet.create({
+ 
+  button: {
+    margin: 5,
+    height: 40,
+    width: 40,
+    resizeMode : 'stretch',
+  } 
+});
 
-export default CustomCartButton
+
+export default CustomCartButton;
