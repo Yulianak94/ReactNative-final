@@ -1,4 +1,3 @@
-// Structure for each country in our app: 
 class Department{
     constructor(id, title, color){
         this.id = id;
@@ -8,9 +7,3 @@ class Department{
 }
 
 export default Department;
-
-/*
-Class task:
-1. Add to countriesScreen flatList with list of all countries. 
-
-*/

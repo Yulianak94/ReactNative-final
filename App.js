@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer);
 const fetchFonts = () => {
   Font.loadAsync({
-    "pattaya-regular": require("./assets/fonts/pattaya-Regular.ttf"),
+    "MontserratAlternates-Medium": require("./assets/fonts/MontserratAlternates-Medium.ttf"),
   });
 };
 

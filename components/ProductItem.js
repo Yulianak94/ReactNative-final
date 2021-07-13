@@ -1,7 +1,5 @@
 import React from "react";
-import {View,Text,StyleSheet,TouchableOpacity,ImageBackground,Image} from "react-native";
-
-// 2. add style. -> numberOfLines={1} if text is large - make is shorter. (only 1 row)
+import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, Image } from "react-native";
 
 const ProductItem = (props) => {
   
@@ -19,13 +17,10 @@ const ProductItem = (props) => {
         <View style={{ ...styles.productRow, ...styles.productDetail }}>
           <Text style={styles.myTitle}>Product: {props.title}</Text>
           <Text style={styles.myTitle}>Price: {props.price}$ </Text>
-
           <Image
             style={styles.singleProduct}
             source={{uri: props.picture}}/>
-          
         </View>
-     
     </TouchableOpacity>
   );
 };
@@ -56,9 +51,8 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "flex-end",
   },
-  // Add style to title:
   titleContainer: {
-    backgroundColor: "rgba(0,0,0,0.5)", // black color, bit transparent (0.5)
+    backgroundColor: "rgba(0,0,0,0.5)",
     paddingVertical: 5,
     paddingHorizontal: 12,
   },

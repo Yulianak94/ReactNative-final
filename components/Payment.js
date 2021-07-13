@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button} from "react-native";
+import { Text, StyleSheet, TextInput, ScrollView} from "react-native";
+import CustomNextButton from "../components/CustomNextButton";
+import { validEmail, validPassword } from './regex.js';
+
 
 const Payment = (props) => {
     console.log(props)
@@ -16,90 +19,169 @@ const Payment = (props) => {
     const [TextInputValidity, setTextInputValidity] = useState('');
     const [TextInputCVV, setTextInputCVV] = useState('');
 
-  const checkTextInput = () => {
-      let validate = false;
-    //Check for the Name TextInput
-    if (!TextInputFirstName.trim()) {
-      alert('Please Enter First Name');
-      validate = false;
-    }else{
+
+    const emailRegex =/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const firstNameRegex = /^[a-z]([-']?[a-z]+)+$/;
+    const lastNameRegex = /^[a-z]([-']?[a-z]+)+$/;
+    const phoneRegex = /^[0-9]{2,3}-[0-9]{7}/;
+    const countryRegex = /^[a-z]([-']?[a-z]+)+$/;
+    const cityRegex = /^[a-z]([-']?[a-z]+)+$/;
+    const addressRegex =/^[a-z]([-']?[a-z]+)+$/;
+
+    const cardholderRegex = /^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/;
+    const idRegex = /^[0-9]{9}$/;
+    const creditRegex = /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/;
+    const validityRegex = /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/;
+    const cvvRegex = /^[0-9]{3,4}$/;
+
+    function validateEmail (email){
+      let validateForum=false;
+      if(emailRegex.test(email)) {
+        validateForum = true;
+      } else {
+        alert(`${email} is not valide`)
+        validateForum = false;
+      }
+      
+      return validateForum;
+    };
+
+    function validateFirstName (firstName) {
+      let validateForum=false;
+      if (firstNameRegex.test(firstName)) {
+        validateForum = true;
+      } else {
+        alert(`${firstName} is not valide`)
+        validateForum = false;
+      }
+      return validateForum;
+    };
+
+    function validateLastName(lastName) {
+      let validateForum=false;
+      if (lastNameRegex.test(lastName)) {
+        validateForum = true;
+      } else {
+        alert(`${lastName} is not valide`)
+        validateForum = false;
+      }
+      return validateForum;
+    };
+
+    function validatePhone(phone){
+      let validateForum=false;
+      if (phoneRegex.test(phone)) {
+        validateForum = true;
+      } else {
+        alert(`${phone} is not valide`)
+        validateForum = false;
+      }
+      return validateForum;
+    };
+
+    function validateCountry (country) {
+      let validateForum=false;
+      if (countryRegex.test(country)) {
+        validateForum = true;
+      } else {
+        alert(`${country} is not valide`)
+        validateForum = false;
+      }
+      return validateForum;
+    };
+
+    function validateCity (city) {
+      let validateForum=false;
+      if (cityRegex.test(city)) {
+        validateForum = true;
+      } else {
+        alert(`${city} is not valide`)
+        validateForum = false;
+      }
+      return validateForum;
+    };
+
+    function validateAddress (address) {
+      let validateForum=false;
+      if (addressRegex.test(address)) {
+        validateForum = true;
+      } else {
+        alert(`${address} is not valide`)
+        validateForum = false;
+      }
+      return validateForum;
+    };
+
+    function validateCardholder(cardholder) {
+      let validateForum=false;
+      if (cardholderRegex.test(cardholder)) {
+        validateForum = true;
+      } else {
+        alert(`${cardholder} is not valide`)
+        validateForum = false;
+      }
+      return validateForum;
+    };
+
+    function validateID (id) {
+      let validateForum=false;
+      if (idRegex.test(id)) {
+        validateForum = true;
+      } else {
+        alert(`${id} is not valide`)
+        validateForum = false;
+      }
+      return validateForum;
+    };
+
+    function validateCredit (credit) {
+      let validateForum=false;
+      if (creditRegex.test(credit)) {
+        validateForum = true;
+      } else {
+        alert(`${credit} is not valide`)
+        validateForum = false;
+      }
+      return validateForum;
+    };
+
+    function validateValidity(validity) {
+      let validateForum=false;
+      if (validityRegex.test(validity)) {
+        validateForum = true;
+      } else {
+        alert(`${validity} is not valide`)
+        validateForum = false;
+      }
+      return validateForum;
+    };
+
+    function validateCVV(cvv){
+      let validateForum=false;
+      if (cvvRegex.test(cvv)) {
+        validateForum = true;
+      } else {
+        alert(`${cvv} is not valide`)
+        validateForum = false;
+      }
+      return validateForum;
+    };
+
+
+  function checkTextInput() {
+    let validate = false;
+      if(validateEmail(TextInputEmail) && validateFirstName(TextInputFirstName) && validateLastName(TextInputLastName) && 
+      validatePhone(TextInputPhone) && validateCountry(TextInputCountry)&& validateCity(TextInputCity) &&
+       validateAddress(TextInputAddress) && validateCardholder(TextInputCardholder) && validateID(TextInputID) &&
+        validateCredit(TextInputCardNumber) && validateValidity(TextInputValidity) && validateCVV(TextInputCVV)
+      ){
         validate = true;
-    }
-    if (!TextInputLastName.trim()) {
-        alert('Please Enter Last Name');
-        validate = false;
-    }else{
-        validate = true;
-    }
-      if (!TextInputEmail.trim()) {
-        alert('Please Enter Email');
-        validate = false;
-      }else{
-        validate = true;
-    }
-      if (!TextInputPhone.trim()) {
-        alert('Please Enter Phone Number');
-        validate = false;
-    }else{
-        validate = true;
-    }
-      if (!TextInputCountry.trim()) {
-        alert('Please Enter Country');
-        validate = false;
-    }else{
-        validate = true;
-    }
-      if (!TextInputCity.trim()) {
-        alert('Please Enter City');
-        validate = false;
-    }else{
-        validate = true;
-    }
-      if (!TextInputAddress.trim()) {
-        alert('Please Enter Address');
-        validate = false;
-    }else{
-        validate = true;
-    }
-      if (!TextInputCardholder.trim()) {
-        alert("Please Enter Cardholder's Name");
-        validate = false;
-    }else{
-        validate = true;
-    }
-      if (!TextInputID.trim()) {
-        alert('Please Enter ID');
-        validate = false;
-    }else{
-        validate = true;
-    }
-      if (!TextInputCardNumber.trim()) {
-        alert('Please Enter Credit Card Number');
-        validate = false;
-    }else{
-        validate = true;
-    }
-      if (!TextInputValidity.trim()) {
-        alert('Please Enter Validity');
-        validate = false;
-    }else{
-        validate = true;
-    }
-        //Check for the Email TextInput
-        if (!TextInputCVV.trim()) {
-        alert('Please Enter CVV');
-        validate = false;
-    }else{
-        validate = true;
-    }
-    //Checked Successfully
-    //Do whatever you want
-    alert('Success');
-    return validate;
+      }
+      return validate;
     }
 
     const submitForm = () => {
-        if(checkTextInput()){
+      if(checkTextInput()){
             props.navigation.navigate({
                 routeName: "Final"
             })
@@ -107,61 +189,53 @@ const Payment = (props) => {
     }
 
   return (
-      <View>
-        <Text>First Name:</Text>
-        <TextInput editable maxLength={40} placeholder="Enter First Name"
-          onChangeText={(value) => setTextInputFirstName(value)}
-          style={styles.textInputStyle}/>  
+      <ScrollView>
+        <Text style={styles.forumTitle}>Personal Details:</Text>
+        <Text style={styles.forum}>First Name:</Text>
+        <TextInput type="text" placeholder="Enter First Name" className="text-input" onChangeText={(value) => setTextInputFirstName(value)}/>
+  
+        <Text style={styles.forum}>Last Name:</Text>
+        <TextInput type="text" placeholder="Enter First Name" className="text-input" onChangeText={(value) => setTextInputLastName(value)}/>
 
-        <Text>Last Name:</Text>
-        <TextInput editable maxLength={40} placeholder="Enter Last Name" onChangeText={(value) => setTextInputLastName(value)}
-          style={styles.textInputStyle}/>
+        <Text style={styles.forum}>Email:</Text>
+      <TextInput type="email" placeholder="Enter Email" className="email-input" onChangeText={(value) => setTextInputEmail(value)}/>
 
-        <Text>Email:</Text>
-        <TextInput editable maxLength={40} placeholder="Enter Email"
-          onChangeText={(value) => setTextInputEmail(value)}
-          style={styles.textInputStyle}/>
 
-        <Text>Phone Number:</Text>
-        <TextInput editable maxLength={40} placeholder="Enter Phone Number" onChangeText={(value) => setTextInputPhone(value)}
-          style={styles.textInputStyle}/>
+        <Text style={styles.forum}>Phone Number:</Text>
+      <TextInput  type="number" placeholder="05X-XXXXXXX or 0X-XXXXXXX" className="number-input"  onChangeText={(value) => setTextInputPhone(value)}/>
 
-        <Text>Country:</Text>
-        <TextInput editable maxLength={40} placeholder="Enter Country" onChangeText={(value) => setTextInputCountry(value)}
-          style={styles.textInputStyle}/>
 
-        <Text>City:</Text>
-        <TextInput editable maxLength={40} placeholder="Enter City" onChangeText={(value) => setTextInputCity(value)}
-          style={styles.textInputStyle}/>
+        <Text style={styles.forum}>Country:</Text>
+        <TextInput type="text" placeholder="Enter Country" className="text-input" onChangeText={(value) => setTextInputCountry(value)}/>
 
-        <Text>Address:</Text>
-        <TextInput editable maxLength={40} placeholder="Enter Address" onChangeText={(value) => setTextInputAddress(value)}
-          style={styles.textInputStyle}/>
 
-        <Text>Credit Card Details:</Text>
-        <Text>Cardholder's Name:</Text>
-        <TextInput editable maxLength={40} placeholder="Enter Cardholder's Name" onChangeText={(value) => setTextInputCardholder(value)}
-          style={styles.textInputStyle}/>
+        <Text style={styles.forum}>City:</Text>
+        <TextInput type="text" placeholder="Enter City" className="text-input"  onChangeText={(value) => setTextInputCity(value)}/>
 
-        <Text>ID:</Text>
-        <TextInput editable maxLength={40} placeholder="Enter ID" onChangeText={(value) => setTextInputID(value)}
-          style={styles.textInputStyle}/>
 
-        <Text>Credit Card Number:</Text>
-        <TextInput editable maxLength={40} placeholder="Enter Credit Card Number" onChangeText={(value) => setTextInputCardNumber(value)}
-          style={styles.textInputStyle}/>
+        <Text style={styles.forum}>Address:</Text>
+        <TextInput type="text" placeholder="Enter Address" className="text-input"  onChangeText={(value) => setTextInputAddress(value)}/>
 
-        <Text>Validity:</Text>
-        <TextInput editable maxLength={40} placeholder="Enter Validity" onChangeText={(value) => setTextInputValidity(value)}
-          style={styles.textInputStyle}/>
 
-        <Text>CVV:</Text>
-        <TextInput editable maxLength={40} placeholder="Enter CVV" onChangeText={(value) => setTextInputCVV(value)}
-          style={styles.textInputStyle}/>
+        <Text style={styles.forumTitle}>Credit Card Details:</Text>
+        <Text style={styles.forum}>Cardholder's Name:</Text>
+        <TextInput type="text" placeholder="Enter Cardholder's Name" className="text-input" onChangeText={(value) => setTextInputCardholder(value)}/>
 
-        <Text> Final Price: {props.totalPrice} $ </Text>
-        <Button onPress={submitForm}/>
-      </View>
+        <Text style={styles.forum}>ID:</Text>
+        <TextInput type="text" placeholder="Enter ID" className="text-input"  onChangeText={(value) => setTextInputID(value)}/>
+
+        <Text style={styles.forum}>Credit Card Number:</Text>
+        <TextInput type="text" placeholder="Enter Credit Card Number" className="text-input"  onChangeText={(value) => setTextInputCardNumber(value)}/>
+
+        <Text style={styles.forum}>Validity:</Text>
+        <TextInput type="text" placeholder="Enter Validity" className="text-input"  onChangeText={(value) => setTextInputValidity(value)}/>
+
+        <Text style={styles.forum}>CVV:</Text>
+        <TextInput type="text" placeholder="Enter CVV" className="text-input"  onChangeText={(value) => setTextInputCVV(value)}/>
+
+        <Text style={styles.forum}> Final Price After Discount: {props.totalPrice} $ </Text>
+        <CustomNextButton onPress={submitForm}/>
+      </ScrollView>
   );
 };
 
@@ -176,8 +250,6 @@ const styles = StyleSheet.create({
     margin: 15,
     height: 150,
   },
-
-  // 2. Add style to container:
   container: {
     flex: 1,
     borderRadius: 15,
@@ -185,15 +257,25 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.6,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 10,
-    elevation: 3, // for android
+    elevation: 3,
     justifyContent: "flex-end",
     alignItems: "flex-end",
   },
-  // 3. Add style to title:
   title: {
     fontFamily: "MV Boli",
     fontSize: 22,
     margin: 10,
+  },
+  forum: {
+    fontFamily: "Comic Sans MS",
+    fontSize: 21,
+    textAlign: "left",
+  },
+  forumTitle: {
+    fontFamily: "Comic Sans MS",
+    fontSize: 24,
+    textAlign: "center",
+    backgroundColor: "#FF9999",
   },
 });
 

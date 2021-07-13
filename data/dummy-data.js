@@ -6,14 +6,11 @@ export const DEPARTMENT = [
     new Department('3', 'Toys', 'darksalmon'),
     new Department('4', 'Clothes', 'darkviolet'),
     new Department('5', 'Accessories', 'firebrick'),
-    new Department('6', 'Cleaning Products', 'gold'),
+    new Department('6', 'Cleanliness', 'gold'),
 ]
 
-// import:
 import Product from "../models/Product";
 
-
-// add data for Trips:
 export const PRODUCT = [
   new Product(
     "p1",

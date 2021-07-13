@@ -4,10 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 const DepartmentGridTile = (props) => {
   return (
     <TouchableOpacity style={styles.gridItem} onPress={props.onSelect}>
-      {/* 1. Add style - view and text */}
-      <View
-        style={{ ...styles.container, backgroundColor: props.color  }}
-      >
+      <View style={{ ...styles.container, backgroundColor: props.color  }}>
         <Text style={styles.title}>{props.title}</Text>
       </View>
     </TouchableOpacity>
@@ -25,8 +22,6 @@ const styles = StyleSheet.create({
     margin: 15,
     height: 150,
   },
-
-  // 2. Add style to container:
   container: {
     flex: 1,
     borderRadius: 15,
@@ -34,15 +29,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.6,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 10,
-    elevation: 3, // for android
+    elevation: 3,
     justifyContent: "flex-end",
     alignItems: "flex-end",
   },
-  // 3. Add style to title:
   title: {
-    fontFamily: "MV Boli",
+    //fontFamily: "MV Boli",
     fontSize: 22,
     margin: 10,
+    fontFamily:'MontserratAlternates-Medium'
   },
 });
 

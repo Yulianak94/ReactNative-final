@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, FlatList } from "react-native";
-
 import ProductItem from "./ProductItem";
 
 const ProductList = props => {
@@ -8,19 +7,14 @@ const ProductList = props => {
       return <ProductItem
       id={itemData.item.title}
       title={itemData.item.title}
-      //shipping={itemData.item.shipping}
       price={itemData.item.price}
       picture={itemData.item.picture}
-
-      
       onSelectProduct={() => {
         props.navigation.navigate({
           routeName: "ProductDetail",
           params: {
             productId: itemData.item.id,
-             // Add:
              productTitle: itemData.item.title,
-             //productShipping: itemData.item.shipping,
              productPrice: itemData.item.price,
              productPicture: itemData.item.picture
 
@@ -28,15 +22,14 @@ const ProductList = props => {
         });
       }}/>
     };
+
   return (
     <View style={styles.container}>
       <FlatList
-        //   change the data from props.
         data={props.listData}
         keyExtractor={(item) => item.id}
         renderItem={renderProductItem}
-        style={{ width: "100%" }}
-      />
+        style={{ width: "100%" }}/>
     </View>
   );
 };

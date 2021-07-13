@@ -9,14 +9,9 @@ import ProductDetailScreen from "../screens/ProductDetailScreen";
 import FavoriteProductScreen from "../screens/FavoriteProductScreen";
 import PaymentScreen from "../screens/PaymentScreen";
 import Final from "../components/Final";
-
-
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
-
-// import:
 import { createDrawerNavigator } from "react-navigation-drawer";
-import FiltersScreen from "../screens/FiltersScreen";
 
 const defaultStackNavOptions = {
   headerStyle: {
@@ -28,11 +23,9 @@ const defaultStackNavOptions = {
 
 const ProductNavigator = createStackNavigator(
   {
-
     Department: DepartmentScreen,
     DepartmentProduct: {
       screen: DepartmentProductScreen,
-
     },
     ProductDetail: ProductDetailScreen,
     Payment: PaymentScreen,
@@ -52,6 +45,7 @@ const FavNavigator = createStackNavigator(
     defaultNavigationOptions: defaultStackNavOptions,
   }
 );
+
 const ProductFavTabNavigator = createBottomTabNavigator(
   {
     Product: {
@@ -87,35 +81,23 @@ const ProductFavTabNavigator = createBottomTabNavigator(
   }
 );
 
-// Now is the time to use FiltersScreen
-// 3. Create createStackNavigator
-const FiltersNavigator = createStackNavigator({
-  Filters: FiltersScreen,
-});
-
 const MainNavigator = createDrawerNavigator(
   {
     productFavs: {
       screen: ProductFavTabNavigator,
       navigationOptions: {
-        // Change title name
         drawerLabel: "Product",
       },
     },
-    //Filters: FiltersNavigator,
   },
-  // We can add third argument that defines the navigator itself:
-  // Change the entire font-family and color
   {
     contentOptions: {
       activeTintColor: Colors.secondary,
       labelStyle: {
-        // Change font-family
-        fontFamily: "pattaya-regular",
+        fontFamily: "MontserratAlternates-Medium",
       },
     },
   }
 );
 
-// 5. export the MainNavigator
 export default createAppContainer(MainNavigator);

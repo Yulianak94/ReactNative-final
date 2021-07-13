@@ -1,10 +1,7 @@
 import React from "react";
-import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, FlatList } from "react-native";
-
 import { DEPARTMENT } from "../data/dummy-data";
 import DepartmentGridTile from "../components/DepartmentGridTile";
-// 2. Import:
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../components/CustomHeaderButton";
 
@@ -13,7 +10,6 @@ const DepartmentScreen = (props) => {
     return (
       <DepartmentGridTile
         title={itemData.item.title}
-        // 2. Add color ref:
         color={itemData.item.color}
         onSelect={() => {
           props.navigation.navigate({
@@ -37,22 +33,9 @@ const DepartmentScreen = (props) => {
   );
 };
 
-// 1. Change the navigationOptions to function, so we can return values:
 DepartmentScreen.navigationOptions = (navData) => {
   return {
     headerTitle: "Product department",
-    headerLeft: (
-      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-        <Item
-          title="Menu"
-          iconName="ios-menu"
-          // 2. Add function: open the side menu: we see TripsFav and Filters
-          onPress={() => {
-            navData.navigation.toggleDrawer();
-          }}
-        />
-      </HeaderButtons>
-    ),
   };
 };
 

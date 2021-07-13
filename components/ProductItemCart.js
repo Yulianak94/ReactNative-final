@@ -1,18 +1,8 @@
 import React,{useCallback} from "react";
 import {View,Text,StyleSheet,TouchableOpacity,ImageBackground,Image, SafeAreaView, TextInput,Button} from "react-native";
 import CustomCartButton from "../components/CustomCartButton";
-
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-// import:
-import { toggleAdd, toggleDelete } from "../store/actions/product";
-
-// Add useDispatch
-import { useSelector, useDispatch } from "react-redux";
-
-
-
-// 2. add style. -> numberOfLines={1} if text is large - make is shorter. (only 1 row)
+import {toggleDelete } from "../store/actions/product";
+import { useDispatch } from "react-redux";
 
 const ProductItemCart = (props) => {
   const dispatch = useDispatch();
@@ -20,7 +10,6 @@ const ProductItemCart = (props) => {
     dispatch(toggleDelete(props.id));
   }, [dispatch, props.id]);
 
-  
   return (
     <TouchableOpacity onPress={props.onSelect}>
       <View style={{ ...styles.productRow, ...styles.productHeader }}>
@@ -35,38 +24,18 @@ const ProductItemCart = (props) => {
         <View style={{ ...styles.productRow, ...styles.productDetail }}>
           <Text style={styles.myTitle}>Product: {props.title}</Text>
           <Text style={styles.myTitle}>Price: {props.price}$ </Text>
-
           <Image
             style={styles.singleProduct}
             source={{uri: props.picture}}/>
-          
         </View>
-
       <SafeAreaView>
       <View>
-
-      <CustomCartButton
-        // instead of always rendering ios-star:
-        // render full / empty:
-        
-        onPress={deleteFromCart}
-        />
-
-
-
-
-
+      <CustomCartButton onPress={deleteFromCart}/>
       </View>
-    </SafeAreaView>
-
-    
-     
+    </SafeAreaView> 
     </TouchableOpacity>
   );
 };
-
-
-
 
 const styles = StyleSheet.create({
   productItem: {
@@ -103,9 +72,8 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "flex-end",
   },
-  // Add style to title:
   titleContainer: {
-    backgroundColor: "rgba(0,0,0,0.5)", // black color, bit transparent (0.5)
+    backgroundColor: "rgba(0,0,0,0.5)",
     paddingVertical: 5,
     paddingHorizontal: 12,
   },

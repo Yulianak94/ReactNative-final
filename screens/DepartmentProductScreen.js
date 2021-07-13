@@ -3,10 +3,8 @@ import { View, StyleSheet, FlatList, ScrollView} from "react-native";
 import { DEPARTMENT, PRODUCT } from "../data/dummy-data";
 import ProductItem from "../components/ProductItem";
 
-
 const DepartmentProductScreen = (props) => {
   const departmentId = props.navigation.getParam("departmentId");
-
   const renderProductItem = (itemData) => {
 
     return (
@@ -57,9 +55,6 @@ const styles = StyleSheet.create({
   container: {
     fontFamily: "Comic Sans MS",
     fontSize: 22,
-    //textAlign: "center",
-    //flex: 1,
-    //padding: 10,
     justifyContent: "center",
     alignItems: "center",
   },

@@ -1,14 +1,19 @@
-import React, {useState} from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button} from "react-native";
+import React from 'react';
+import { View, Text, StyleSheet } from "react-native";
 
 const Final = (props) => {
     
-
   return (
       <View>
-        <Text>Thank You</Text>
+        <Text style={styles.final}>Thank You</Text>
       </View>
   );
+};
+
+Final.navigationOptions = (navData) => {
+  return {
+    headerTitle: "Thank You",
+  };
 };
 
 const styles = StyleSheet.create({
@@ -22,8 +27,6 @@ const styles = StyleSheet.create({
     margin: 15,
     height: 150,
   },
-
-  // 2. Add style to container:
   container: {
     flex: 1,
     borderRadius: 15,
@@ -31,11 +34,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.6,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 10,
-    elevation: 3, // for android
+    elevation: 3,
     justifyContent: "flex-end",
     alignItems: "flex-end",
   },
-  // 3. Add style to title:
+  final: {
+    fontFamily: "Comic Sans MS",
+    fontSize: 24,
+    textAlign: "center",
+    backgroundColor: "#b3b3ff",
+  },
   title: {
     fontFamily: "MV Boli",
     fontSize: 22,

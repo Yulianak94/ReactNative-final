@@ -3,14 +3,14 @@ import { View, StyleSheet } from "react-native";
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const CustomCartButton = (props) => {
+const CustomNextButton = (props) => {
   return (
     <View style={styles.button}>
         <Button 
           {...props}
           icon={
             <Icon
-              name="trash"
+              name="arrow-circle-right"
               size={20}
               color="black" 
             />}/>
@@ -18,6 +18,7 @@ const CustomCartButton = (props) => {
 );};
 
 var styles = StyleSheet.create({
+ 
   button: {
     margin: 5,
     height: 40,
@@ -26,4 +27,5 @@ var styles = StyleSheet.create({
   } 
 });
 
-export default CustomCartButton;
+
+export default CustomNextButton;

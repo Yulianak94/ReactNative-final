@@ -2,25 +2,12 @@ import React, { useEffect, useCallback } from "react";
 import { View, Text, StyleSheet, ScrollView, Image, SafeAreaView, TextInput } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../components/CustomHeaderButton";
-
-// import:
 import { toggleAdd, toggleDelete } from "../store/actions/product";
-
-// Add useDispatch
 import { useSelector, useDispatch } from "react-redux";
 
-
-
 const ProductDetailScreen = (props) => {
-
-  
-
   const availableProduct = useSelector((state) => state.product.product);
   const productId = props.navigation.getParam("productId");
-
-  // 1. Add check: to get the state
-  // The some() method tests whether at least one element in the array passes the test implemented by the provided function. It returns a Boolean value.
-  // check if tripId -> the current trip - is part of our favorites
   const currentProductIsAdd = useSelector((state) =>
     state.product.cartProduct.some((product) => product.id === productId)
   );
@@ -35,7 +22,6 @@ const ProductDetailScreen = (props) => {
     dispatch(toggleAdd(productId));
   }, [dispatch, productId]);
 
-  
   const toggleDeleteHandler = useCallback(() => {
     dispatch(toggleDelete(productId));
   }, [dispatch, productId]);
@@ -47,11 +33,6 @@ const ProductDetailScreen = (props) => {
   useEffect(() => {
     props.navigation.setParams({ isAd: currentProductIsAdd, isDel: currentProductIsDelete });
   }, [currentProductIsAdd, currentProductIsDelete]);
-
-
-  // Add another useEffect ->
-  // Run after every cycle: update the isFav. We will use isFav in navigationOptions
- 
 
   return (
     <ScrollView>
@@ -77,11 +58,8 @@ ProductDetailScreen.navigationOptions = (navigationData) => {
   const productTitle = navigationData.navigation.getParam("productTitle");
   const toggleAdd = navigationData.navigation.getParam("toggleAd");
   const toggleDelete = navigationData.navigation.getParam("toggleDel");
-
-  // Add variable to get isFav
   const isAdd = navigationData.navigation.getParam("isAd");
   const isDelete = navigationData.navigation.getParam("isDel");
-
   
   return {
     headerTitle: productTitle,
@@ -91,27 +69,21 @@ ProductDetailScreen.navigationOptions = (navigationData) => {
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
           title="Shopping Cart"
-          // instead of always rendering ios-star:
-          // render full / empty:
           iconName={isAdd ? "add-circle" : "add-circle-outline"}
-          onPress={toggleAdd}
-        />
+          onPress={toggleAdd}/>
       </HeaderButtons>
 
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
           title="Shopping Cart"
-          // instead of always rendering ios-star:
-          // render full / empty:
           iconName="remove-circle-outline"
-          onPress={toggleDelete}
-        />
+          onPress={toggleDelete}/>
       </HeaderButtons>
-        
       </>
     ),
   };
 };
+
 const styles = StyleSheet.create({
   image: {
     width: "100%",
@@ -132,7 +104,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     textAlign: "left",
     textDecorationLine: "underline",
-    //textDecorationStyle: "wavy",  
   },
   description: {
     fontFamily: "Comic Sans MS",
